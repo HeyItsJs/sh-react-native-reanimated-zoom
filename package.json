@@ -1,6 +1,6 @@
 {
-  "name": "react-native-reanimated-zoom",
-  "version": "0.3.3",
+  "name": "sh-react-native-reanimated-zoom",
+  "version": "0.4.0",
   "description": "Component to add zoom in react native views.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -29,7 +29,9 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "bootstrap": "yarn example && yarn && yarn pods",
+    "build": "tsc --declaration",
+    "pub": "npm run build && npm publish"
   },
   "keywords": [
     "react-native",

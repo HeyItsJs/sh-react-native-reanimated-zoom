@@ -19,6 +19,7 @@ type Props = {
   children: React.ReactNode;
   minimumZoomScale?: number;
   maximumZoomScale?: number;
+  defaultZoomScale?: number;
   simultaneousGesture?: GestureType;
   onZoomBegin?: () => void;
   onZoomEnd?: () => void;
@@ -28,6 +29,7 @@ export function Zoom(props: Props) {
   const {
     minimumZoomScale = 1,
     maximumZoomScale = 8,
+    defaultZoomScale = 2.5,
     style: propStyle,
     onLayout,
     onZoomBegin,
@@ -164,13 +166,13 @@ export function Zoom(props: Props) {
             translationX.value =
               prevTranslationX.value +
               -1 *
-                ((scale.value - offsetScale.value) *
-                  (originX.value - viewWidth.value / 2));
+              ((scale.value - offsetScale.value) *
+                (originX.value - viewWidth.value / 2));
             translationY.value =
               prevTranslationY.value +
               -1 *
-                ((scale.value - offsetScale.value) *
-                  (originY.value - viewHeight.value / 2));
+              ((scale.value - offsetScale.value) *
+                (originY.value - viewHeight.value / 2));
           }
         }
       })
@@ -191,12 +193,12 @@ export function Zoom(props: Props) {
           resetZoomState();
         } else {
           // translate the image to the focal point and zoom
-          scale.value = withTiming(maximumZoomScale);
+          scale.value = withTiming(defaultZoomScale);
           translationX.value = withTiming(
-            -1 * (maximumZoomScale * (e.x - viewWidth.value / 2))
+            -1 * (defaultZoomScale * (e.x - viewWidth.value / 2))
           );
           translationY.value = withTiming(
-            -1 * (maximumZoomScale * (e.y - viewHeight.value / 2))
+            -1 * (defaultZoomScale * (e.y - viewHeight.value / 2))
           );
         }
       })
